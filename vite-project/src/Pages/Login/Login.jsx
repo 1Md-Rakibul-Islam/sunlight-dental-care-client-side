@@ -4,15 +4,15 @@ import { AuthContext } from "../../Router/Context/AuthProvider/AuthProvider";
 import { FaGoogle } from "react-icons/fa";
 import { GoogleAuthProvider } from "firebase/auth";
 // import  fromImg  from "../../assets/fromInage.jpg";
-  
 
 const Login = () => {
-  const { logIn, loginProvider } = useContext(AuthContext);
+  const { logIn, loginProvider, loader } = useContext(AuthContext);
 
   const location = useLocation();
   const navigate = useNavigate();
 
   const from = location.state?.from?.pathname || "/";
+
   const handelLogin = (event) => {
     event.preventDefault();
     const form = event.target;
@@ -22,10 +22,10 @@ const Login = () => {
     logIn(email, password)
       .then((result) => {
         const user = result.user;
-        console.log(user);
-        navigate(from, { replace: true });
+        loader(false);
       })
       .catch((error) => console.error(error));
+      navigate(from, {replace: true});
   };
 
   // google login

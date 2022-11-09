@@ -27,14 +27,13 @@ const Header = () => {
             <li>
               <Link to={"/service"}>Service</Link>
             </li>
-
+            <li>
+              <Link to={"/addService"}>Add Service</Link>
+            </li>
             {user?.email ? (
               <>
                 <li>
                   <Link to={"/myReview"}>My Review</Link>
-                </li>
-                <li>
-                  <Link to={"/addService"}>Add Service</Link>
                 </li>
                 <li>
                   <button onClick={handelLogOut}>Logout</button>
@@ -69,13 +68,13 @@ const Header = () => {
           <li>
             <Link to={"/blogs"}>Blogs</Link>
           </li>
+          <li>
+            <Link to={"/addService"}>Add Service</Link>
+          </li>
           {user?.email ? (
             <>
               <li>
                 <Link to={"/myReview"}>My Review</Link>
-              </li>
-              <li>
-                <Link to={"/addService"}>Add Service</Link>
               </li>
               <li>
                 <button onClick={handelLogOut}>Logout</button>
@@ -96,10 +95,7 @@ const Header = () => {
       <div className="navbar-end">
         <div className="dropdown dropdown-end">
           <label tabIndex={0} className="btn btn-ghost btn-circle avatar">
-            <div className="w-10 rounded-full">{user?.email ?
-                <img src={user?.photoURL} /> :
-                <FaUser className="text-3xl text-center"></FaUser>}
-            </div>
+            <div className="w-10 rounded-full">{user?.email ? <img src={user?.photoURL} /> : <FaUser className="text-3xl text-center"></FaUser>}</div>
           </label>
           <ul tabIndex={0} className="menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52">
             <li>

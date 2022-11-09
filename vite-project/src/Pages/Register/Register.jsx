@@ -1,10 +1,14 @@
 import React, { useContext } from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../Router/Context/AuthProvider/AuthProvider";
 // import  fromImg  from "../../assets/fromInage.jpg";
 
 const Register = () => {
-  const { creatUser } = useContext(AuthContext);
+  const { creatUser, loader } = useContext(AuthContext);
+//   const location = useLocation();
+//   const navigate = useNavigate();
+
+//   const from = location.state?.from?.pathname || "/";
 
   const handelSignUp = (event) => {
     event.preventDefault();
@@ -15,6 +19,8 @@ const Register = () => {
     creatUser(email, password)
       .then((result) => {
         const user = result.user;
+        // navigate(from, { replace: true });
+        loader(false)
         console.log(result);
       })
       .catch((err) => console.error(err));
@@ -47,7 +53,7 @@ const Register = () => {
               <input type="password" name="password" required placeholder="password" className="input input-bordered" />
             </div>
             <div className="form-control mt-6">
-              <input className="btn btn-primary" type="submit" value="Login" />
+              <input className="btn btn-primary" type="submit" value="Register" />
             </div>
             <p>
               Alredy have an account our site?{" "}

@@ -3,6 +3,11 @@ import './App.css'
 import router from './Router/PrivateRouts/Routes'
 
 function App() {
+  // Something like that
+  if(process.env.NODE_ENV === 'debug'){
+      setDebugLevel(1)
+  }
+
 
   return (
     <div className="App">
