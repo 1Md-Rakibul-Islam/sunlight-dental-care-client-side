@@ -1,9 +1,13 @@
 import React from "react";
+import { useContext } from "react";
 import { Link, useLoaderData } from "react-router-dom";
+import { AuthContext } from "../../Router/Context/AuthProvider/AuthProvider";
 import Review from "../Review/Review";
 
 const ServiceDetails = () => {
   const { _id, serviceName, price, image, about, rating } = useLoaderData();
+
+  const {user} = useContext(AuthContext);
 
   return (
     <div className="mx-auto">
@@ -34,7 +38,7 @@ const ServiceDetails = () => {
                 </div>
               </div>
             </div>
-            <div className="card shadow-xl">
+            <div className={`card shadow-xl ${user?.email? 'block':'hidden'}`}>
               <div className="card-body">
                 <div className="grid gap-2 md:grid-cols-3 justify-center grid-cols-1">
                   <div className="form-control">
