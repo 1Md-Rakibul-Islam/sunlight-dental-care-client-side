@@ -119,7 +119,6 @@ const ServiceDetails = () => {
           </div>
         </div>
       </div>
-      <h2 className="text-yellow-300 text-center mb-2 text-4xl">Reviews: </h2>
       <div className="overflow-x-auto my-4 flex justify-center justify-items-center ">
         <table className="table">
           <Review _id={_id}></Review>

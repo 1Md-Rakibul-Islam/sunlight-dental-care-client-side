@@ -1,34 +1,55 @@
 import React from "react";
+import { useContext } from "react";
+import { FaUserCircle } from "react-icons/fa";
+import { AuthContext } from "../../Router/Context/AuthProvider/AuthProvider";
 
-const Review = ({ review }) => {
-  const { service, serviceName, userName, email, userImage, image, price, about, rating } = review;
+const Review = ({ review, handelOnDelete, handelOnEdit }) => {
+  const {  _id, serviceName, userName, email, userImage, image, price, about, rating } = review;
 
-  console.log(review);
+  const {user} = useContext(AuthContext);
+  const currentUser = user;
+
 
   return (
     <div className="card w-96 h-auto bg-base-100 shadow-xl image-full">
       <figure>
-        <img src={image} alt="img" />
+        <img src={image} alt="Service image not found" />
       </figure>
       <div className="card-body">
-        <h2 className="card-title">{userName}</h2>
+        <div className="flex justify-between">
+            <div className="mask mask-squircle flex justify-center justify-items-center items-center w-12 h-12">
+               {
+                userImage ?
+                    <img src={userImage} alt="unable" /> :
+                    <FaUserCircle className="text-4xl"></FaUserCircle>
+                }
+            </div>
+          <div className="badge badge-warning">
+            Rating: {rating}
+            <input type="radio" name="rating-1" className="mask mask-star" checked />
+          </div>
+        </div>
+        <h2 className="card-title text-white">Name: {userName ? userName : "Not Available"}</h2>
         <span className="">
           <small>{email}</small>
         </span>
-        <p>{about}</p>
-        <div className="card-actions justify-end">
-          <div className="flex flex-col items-center">
-            <div className="avatar">
-              <div className="mask mask-squircle w-12 h-12">
-                <img src={userImage} alt="img" />
-              </div>
+        <h2 className="text-3xl text-secondary">{serviceName}</h2>
+        <p>{about ? about : '......'}</p>
+
+        {
+            currentUser?.email === email? 
+            <div className="card-actions justify-end">
+                <button onClick={() => handelOnEdit(_id)} className="btn btn-success mr-2" type="submit">
+                    Edit
+                </button>
+                <button onClick={() => handelOnDelete(_id)} className="btn btn-error " type="submit">
+                    Delete
+                </button>
             </div>
-            <div className="badge badge-warning">
-              Rating: {rating}
-              <input type="radio" name="rating-1" className="mask mask-star" checked />
-            </div>
-          </div>
-        </div>
+            :
+            <></>            
+        }
+
       </div>
     </div>
   );

@@ -1,7 +1,4 @@
-import React, { useContext } from 'react';
-import { useState } from 'react';
 import { useLoaderData } from 'react-router-dom';
-import { ServiceContext } from '../../Router/Context/ServiceProvider/ServiceProvider';
 import ServicesCard from '../Shared/ServicesCard/ServicesCard';
 
 const Service = () => {
