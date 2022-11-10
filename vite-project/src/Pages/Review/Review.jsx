@@ -1,28 +1,33 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
+import { useContext } from "react";
+import { AuthContext } from "../../Router/Context/AuthProvider/AuthProvider";
+import Rating from "./Rating";
 
-const Review = () => {
+const Review = ({_id}) => {
+    // load service based rivews
+    const { setLoading } = useContext(AuthContext);
+    const [reviews, setReviews] = useState({});
+
+    useEffect(() => {
+      setLoading(true)
+      fetch(`http://localhost:5000/reviews?service=${_id}`)
+      .then(res => res.json())
+      .then(data => setReviews(data))
+      setLoading(false)
+    }, [_id])
+    
   return (
-    <tr>
-      <td>
-        <div className="flex items-center space-x-3">
-          <div className="avatar">
-            <div className="mask mask-squircle w-12 h-12">
-              <img src="/tailwind-css-component-profile-2@56w.png" alt="Avatar Tailwind CSS Component" />
-            </div>
-          </div>
-          <div>
-            <div className="font-bold">Hart Hagerty</div>
-            <div className="text-sm opacity-50">United States</div>
-          </div>
-        </div>
-      </td>
-      <td>
-        Zemlak, Daniel and Leannon
-        <br />
-        <span className="badge badge-ghost badge-sm">Desktop Support Technician</span>
-      </td>
-      <td>Purple</td>
-    </tr>
+    <div className="flex justify-center flex-wrap gap-5">
+    {/* <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-2"> */}
+      { 
+          reviews.length > 0 ?
+          reviews.map( review => <Rating 
+            key={review._id}
+            review={review}
+            ></Rating>)
+          : 'No Reviews in this service'
+      }
+    </div>
   );
 };
 

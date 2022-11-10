@@ -6,8 +6,51 @@ import Review from "../Review/Review";
 
 const ServiceDetails = () => {
   const { _id, serviceName, price, image, about, rating } = useLoaderData();
+  const { user, setLoading } = useContext(AuthContext);
 
-  const {user} = useContext(AuthContext);
+  const handelOnRivew = (event) => {
+    event.preventDefault();
+    const form = event.target;
+    const userName = user?.displayName;
+    const userImage = user?.photoURL;
+    const email = user?.email;
+    const rating = form?.rating.value;
+    const comment = form?.comment.value;
+
+    // console.log(name, email, rating, comment);
+    const review = {
+      service: _id,
+      serviceName,
+      userName,
+      email,
+      userImage,
+      image,
+      price,
+      about,
+      rating,
+      comment,
+    };
+
+    //send rivew to database
+    fetch("http://localhost:5000/reviews", {
+      method: "POST",
+      headers: {
+        "content-type": "application/json",
+      },
+      body: JSON.stringify(review),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(data);
+        if (data.acknowledged) {
+          form.reset();
+          alert("Order Successfully");
+        }
+      })
+      .catch((err) => console.error(err));
+  };
+
+
 
   return (
     <div className="mx-auto">
@@ -38,50 +81,48 @@ const ServiceDetails = () => {
                 </div>
               </div>
             </div>
-            <div className={`card shadow-xl ${user?.email? 'block':'hidden'}`}>
-              <div className="card-body">
+            <div className={`card shadow-xl ${user?.email ? "block" : "hidden"}`}>
+              <form onSubmit={handelOnRivew} className="card-body">
                 <div className="grid gap-2 md:grid-cols-3 justify-center grid-cols-1">
                   <div className="form-control">
                     <label className="label">
                       <span className="label-text">Name</span>
                     </label>
-                    <input type="text" name="name" placeholder="name" className="input input-bordered" />
+                    <input type="text" name="name" placeholder="name" defaultValue={user?.displayName} className="input input-bordered" />
                   </div>
                   <div className="form-control">
                     <label className="label">
                       <span className="label-text">Email</span>
                     </label>
-                    <input type="email" name="email" placeholder="email" className="input input-bordered" />
+                    <input type="email" name="email" placeholder="email" defaultValue={user?.email} className="input input-bordered" />
                   </div>
                   <div className="form-control">
                     <label className="label">
                       <span className="label-text">Rating</span>
                     </label>
-                    <input type="number" name="rating" placeholder="reating" className="input input-bordered" />
+                    <input type="text" name="rating" placeholder="reating" className="input input-bordered" />
                   </div>
                 </div>
                 <div className="form-control">
                   <label className="label">
                     <span className="label-text">Comment</span>
                   </label>
-                  <textarea className="textarea textarea-primary w-full h-24" placeholder="Sheare your experience!!!"></textarea>
+                  <textarea name="comment" className="textarea textarea-primary w-full h-24" placeholder="Sheare your experience!!!"></textarea>
                 </div>
                 <div className="form-control mt-6 mx-auto">
-                  <button className="btn btn-primary ">Submit</button>
+                  <button type="submit" name="submit" className="btn btn-primary ">
+                    Rivew Submit
+                  </button>
                 </div>
-              </div>
+              </form>
             </div>
           </div>
         </div>
       </div>
-      <h2 className="text-yellow-300 text-center mb-2 text-4xl">Reviews</h2>
+      <h2 className="text-yellow-300 text-center mb-2 text-4xl">Reviews: </h2>
       <div className="overflow-x-auto my-4 flex justify-center justify-items-center ">
         <table className="table">
-          <tbody className="grid grid-cols-1 md:grid-cols-2 gap-2">
-            <Review></Review>
-            <Review></Review>
-            <Review></Review>
-          </tbody>
+          <Review _id={_id}></Review>
         </table>
       </div>
     </div>

@@ -6,7 +6,7 @@ import { AuthContext } from "../../Router/Context/AuthProvider/AuthProvider";
 // import  fromImg  from "../../assets/fromInage.jpg";
 
 const Register = () => {
-  const { creatUser, loader } = useContext(AuthContext);
+  const { creatUser, setLoading } = useContext(AuthContext);
   const navigate = useNavigate();
 
   //update user profile
@@ -35,7 +35,7 @@ const Register = () => {
           .catch((error) => {});
         form.reset();
         navigate("/");
-        loader(false);
+        setLoading(false);
       })
       .catch((err) => console.error(err));
   };

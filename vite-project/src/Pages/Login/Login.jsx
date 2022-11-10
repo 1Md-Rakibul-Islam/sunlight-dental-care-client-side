@@ -6,7 +6,7 @@ import { GoogleAuthProvider } from "firebase/auth";
 // import  fromImg  from "../../assets/fromInage.jpg";
 
 const Login = () => {
-  const { logIn, loginProvider, loader } = useContext(AuthContext);
+  const { logIn, loginProvider, setLoading } = useContext(AuthContext);
 
   const location = useLocation();
   const navigate = useNavigate();
@@ -22,7 +22,7 @@ const Login = () => {
     logIn(email, password)
       .then((result) => {
         const user = result.user;
-        loader(false);
+        setLoading(false);
       })
       .catch((error) => console.error(error));
       navigate(from, {replace: true});
@@ -35,6 +35,7 @@ const Login = () => {
       .then((result) => {
         const user = result.user;
         console.log(user);
+        setLoading(false)
         navigate(from, { replace: true });
       })
       .catch((error) => {
