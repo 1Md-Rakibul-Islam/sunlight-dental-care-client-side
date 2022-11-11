@@ -24,7 +24,7 @@ const MyReview = () => {
         .then((data) => {
           // console.log(data);
           if (data.deletedCount > 0) {
-            alert("Deleted successfully");
+            alert("Deleted successfully. Plase refresh the page");
             const remaining = reviews.filter((revw) => revw._id !== id);
             SetMyReview(remaining);
           }

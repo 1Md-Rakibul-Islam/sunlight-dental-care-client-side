@@ -3,7 +3,7 @@ import { useContext } from "react";
 import { FaUserCircle } from "react-icons/fa";
 import { AuthContext } from "../../Router/Context/AuthProvider/AuthProvider";
 
-const Rating = ({ review, handelOnDelete, handelOnEdit, Toaster }) => {
+const Rating = ({ review, handelOnDelete, handelOnEdit }) => {
   const {  _id, serviceName, userName, email, userImage, image, price, about, comment, rating } = review;
 
   const {user} = useContext(AuthContext);
@@ -45,7 +45,6 @@ const Rating = ({ review, handelOnDelete, handelOnEdit, Toaster }) => {
                 <button onClick={() => handelOnDelete(_id)} className="btn btn-error " type="submit">
                     Delete
                 </button>
-                <Toaster></Toaster>
             </div>
             :
             <></>            
