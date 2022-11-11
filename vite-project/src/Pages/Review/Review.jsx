@@ -14,7 +14,7 @@ const Review = ({ _id }) => {
     const permation = window.confirm("Are you sure to Delete? Yes/No");
 
     if (permation) {
-      fetch(`http://localhost:5000/reviews/${id}`, {
+      fetch(`https://sunlight-dental-care-1md-rakibul-islam.vercel.app/reviews/${id}`, {
         method: "DELETE",
       })
         .then((res) => res.json())
@@ -30,7 +30,7 @@ const Review = ({ _id }) => {
 
   useEffect(() => {
     setLoading(true);
-    fetch(`http://localhost:5000/reviews?service=${_id}`)
+    fetch(`https://sunlight-dental-care-1md-rakibul-islam.vercel.app/reviews?service=${_id}`)
       .then((res) => res.json())
       .then((data) => setReviews(data.reverse()));
     setLoading(false);
@@ -42,8 +42,7 @@ const Review = ({ _id }) => {
       <div className="flex justify-center flex-wrap gap-5">
         {reviews.length > 0
           ? reviews.map((review) => <Rating key={review._id} review={review} handelOnDelete={handelOnDelete}></Rating>)
-          : "No Reviews in this service"
-        }
+          : "No Reviews in this service"}
       </div>
     </div>
   );

@@ -17,7 +17,7 @@ const MyReview = () => {
     const permation = window.confirm("Are you sure to Delete? Yes/No");
 
     if (permation) {
-      fetch(`http://localhost:5000/reviews/${id}`, {
+      fetch(`https://sunlight-dental-care-1md-rakibul-islam.vercel.app/reviews/${id}`, {
         method: "DELETE",
       })
         .then((res) => res.json())
@@ -33,7 +33,7 @@ const MyReview = () => {
   };
 
   useEffect(() => {
-    fetch(`http://localhost:5000/reviews/user?email=${user?.email}`)
+    fetch(`https://sunlight-dental-care-1md-rakibul-islam.vercel.app/reviews/user?email=${user?.email}`)
       .then((res) => res.json())
       .then((data) => SetMyReview(data));
   }, [user?.email]);

@@ -1,5 +1,6 @@
 import React from "react";
 import { useContext } from "react";
+import { Link } from "react-router-dom";
 import { FaUserCircle } from "react-icons/fa";
 import { AuthContext } from "../../Router/Context/AuthProvider/AuthProvider";
 
@@ -39,9 +40,11 @@ const Rating = ({ review, handelOnDelete, handelOnEdit }) => {
         {
             currentUser?.email === email? 
             <div className="card-actions justify-end">
-                <button onClick={() => handelOnEdit(_id)} className="btn btn-success mr-2" type="submit">
-                    Edit
-                </button>
+                <Link to={`/review/update/${_id}`}>
+                  <button className="btn btn-success mr-2" type="submit">
+                      Edit
+                  </button>
+                </Link>
                 <button onClick={() => handelOnDelete(_id)} className="btn btn-error " type="submit">
                     Delete
                 </button>

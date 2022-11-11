@@ -1,14 +1,14 @@
 import React from "react";
 import { useContext } from "react";
 import { Link, useLoaderData } from "react-router-dom";
-import toast, { Toaster } from 'react-hot-toast';
+import toast, { Toaster } from "react-hot-toast";
 import { AuthContext } from "../../Router/Context/AuthProvider/AuthProvider";
 import { TabTitle } from "../../TabTitle/TabTitle";
 import Review from "../Review/Review";
 
 const ServiceDetails = () => {
-    //Page titel
-    TabTitle('Service Details')
+  //Page titel
+  TabTitle("Service Details");
 
   const { _id, serviceName, price, image, about, rating, comment } = useLoaderData();
   const { user, setLoading } = useContext(AuthContext);
@@ -36,7 +36,7 @@ const ServiceDetails = () => {
     };
 
     //send rivew to database
-    fetch("http://localhost:5000/reviews", {
+    fetch("https://sunlight-dental-care-1md-rakibul-islam.vercel.app/reviews", {
       method: "POST",
       headers: {
         "content-type": "application/json",
@@ -48,7 +48,13 @@ const ServiceDetails = () => {
         console.log(data);
         if (data.acknowledged) {
           form.reset();
-          toast.success(<div><p>'Rating Successfully created!' <br /> Plase refresh the browser</p></div>)          
+          toast.success(
+            <div>
+              <p>
+                'Rating Successfully created!' <br /> Plase refresh the browser
+              </p>
+            </div>
+          );
         }
       })
       .catch((err) => console.error(err));
@@ -109,7 +115,13 @@ const ServiceDetails = () => {
                   <label className="label">
                     <span className="label-text">Comment</span>
                   </label>
-                  <textarea name="comment" type='text' className="textarea textarea-primary w-full h-24" placeholder="Sheare your experience!!!" required></textarea>
+                  <textarea
+                    name="comment"
+                    type="text"
+                    className="textarea textarea-primary w-full h-24"
+                    placeholder="Sheare your experience!!!"
+                    required
+                  ></textarea>
                 </div>
                 <div className="form-control mt-6 mx-auto">
                   <button type="submit" name="submit" className="btn btn-primary ">
@@ -122,6 +134,7 @@ const ServiceDetails = () => {
           </div>
         </div>
       </div>
+      <p className="text-center">If you add or delete review. plase refresh the page</p>
       <div className="overflow-x-auto my-4 flex justify-center justify-items-center ">
         <table className="table">
           <Review _id={_id}></Review>

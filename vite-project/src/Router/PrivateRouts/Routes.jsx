@@ -7,6 +7,7 @@ import Home from "../../Pages/Home/Home/Home";
 import Login from "../../Pages/Login/Login";
 import MyReview from "../../Pages/MyReview/MyReview";
 import Register from "../../Pages/Register/Register";
+import ReviewUpdate from "../../Pages/Review/ReviewUpdate";
 import Service from "../../Pages/Service/Service";
 import ServiceDetails from "../../Pages/ServiceDetails/ServiceDetails";
 import PrivateRouts from "./PrivateRouts";
@@ -22,12 +23,12 @@ const router = createBrowserRouter([
       {
         path: "/services",
         element: <Service></Service>,
-        loader: () => fetch("http://localhost:5000/services"),
+        loader: () => fetch("https://sunlight-dental-care-1md-rakibul-islam.vercel.app/services"),
       },
       {
         path: "/services/:_id",
         element: <ServiceDetails></ServiceDetails>,
-        loader: ({ params }) => fetch(`http://localhost:5000/services/${params._id}`),
+        loader: ({ params }) => fetch(`https://sunlight-dental-care-1md-rakibul-islam.vercel.app/services/${params._id}`),
       },
       {
         path: "/myReview",
@@ -36,6 +37,11 @@ const router = createBrowserRouter([
             <MyReview></MyReview>
           </PrivateRouts>
         ),
+      },
+      {
+        path: "/review/update/:_id",
+        element: <ReviewUpdate></ReviewUpdate>,
+        loader: ({ params }) => fetch(`https://sunlight-dental-care-1md-rakibul-islam.vercel.app/review/${params._id}`),
       },
       {
         path: "/addService",
