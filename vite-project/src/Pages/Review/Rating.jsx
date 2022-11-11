@@ -4,7 +4,7 @@ import { FaUserCircle } from "react-icons/fa";
 import { AuthContext } from "../../Router/Context/AuthProvider/AuthProvider";
 
 const Rating = ({ review, handelOnDelete, handelOnEdit }) => {
-  const {  _id, serviceName, userName, email, userImage, image, price, about, rating } = review;
+  const {  _id, serviceName, userName, email, userImage, image, price, about, comment, rating } = review;
 
   const {user} = useContext(AuthContext);
   const currentUser = user;
@@ -34,7 +34,7 @@ const Rating = ({ review, handelOnDelete, handelOnEdit }) => {
           <small>{email}</small>
         </span>
         <h2 className="text-3xl text-secondary">{serviceName}</h2>
-        <p>{about ? about : '......'}</p>
+        <p>{comment}</p>
 
         {
             currentUser?.email === email? 

@@ -8,6 +8,8 @@ const Review = ({ _id }) => {
   const { setLoading } = useContext(AuthContext);
   const [reviews, setReviews] = useState({});
 
+  // console.log(reviews);
+
   const handelOnDelete = (id) => {
     const permation = window.confirm("Are you sure to Delete? Yes/No");
 

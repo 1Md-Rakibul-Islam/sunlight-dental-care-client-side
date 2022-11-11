@@ -9,7 +9,7 @@ const ServiceDetails = () => {
     //Page titel
     TabTitle('Service Details')
 
-  const { _id, serviceName, price, image, about, rating } = useLoaderData();
+  const { _id, serviceName, price, image, about, rating, comment } = useLoaderData();
   const { user, setLoading } = useContext(AuthContext);
 
   const handelOnRivew = (event) => {
@@ -21,7 +21,6 @@ const ServiceDetails = () => {
     const rating = form?.rating.value;
     const comment = form?.comment.value;
 
-    // console.log(name, email, rating, comment);
     const review = {
       service: _id,
       serviceName,
@@ -48,7 +47,7 @@ const ServiceDetails = () => {
         console.log(data);
         if (data.acknowledged) {
           form.reset();
-          alert("Order Successfully");
+          alert("Rating Successfully");
         }
       })
       .catch((err) => console.error(err));
@@ -56,7 +55,7 @@ const ServiceDetails = () => {
 
   return (
     <div className="mx-auto">
-      <h2>Service Details</h2>
+      <h2 className="text-center text-warning my-5 text-4xl">Service Details</h2>
       <div className="hero min-h-screen my-5 bg-base-200">
         <div className="hero-content flex flex-col justify-between items-start lg:flex-row">
           <div className="">
@@ -96,20 +95,20 @@ const ServiceDetails = () => {
                     <label className="label">
                       <span className="label-text">Email</span>
                     </label>
-                    <input type="email" name="email" placeholder="email" defaultValue={user?.email} className="input input-bordered" />
+                    <input type="email" name="email" placeholder="email" required defaultValue={user?.email} className="input input-bordered" />
                   </div>
                   <div className="form-control">
                     <label className="label">
                       <span className="label-text">Rating</span>
                     </label>
-                    <input type="text" name="rating" placeholder="reating" className="input input-bordered" />
+                    <input type="text" name="rating" placeholder="reating" required className="input input-bordered" />
                   </div>
                 </div>
                 <div className="form-control">
                   <label className="label">
                     <span className="label-text">Comment</span>
                   </label>
-                  <textarea name="comment" className="textarea textarea-primary w-full h-24" placeholder="Sheare your experience!!!"></textarea>
+                  <textarea name="comment" type='text' className="textarea textarea-primary w-full h-24" placeholder="Sheare your experience!!!" required></textarea>
                 </div>
                 <div className="form-control mt-6 mx-auto">
                   <button type="submit" name="submit" className="btn btn-primary ">
