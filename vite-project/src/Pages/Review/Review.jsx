@@ -33,7 +33,7 @@ const Review = ({ _id }) => {
     setLoading(true);
     fetch(`http://localhost:5000/reviews?service=${_id}`)
       .then((res) => res.json())
-      .then((data) => setReviews(data));
+      .then((data) => setReviews(data.reverse()));
     setLoading(false);
   }, [_id]);
 
