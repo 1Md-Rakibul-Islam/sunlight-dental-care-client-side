@@ -2,9 +2,13 @@ import React from "react";
 import { useContext } from "react";
 import { Link, useLoaderData } from "react-router-dom";
 import { AuthContext } from "../../Router/Context/AuthProvider/AuthProvider";
+import { TabTitle } from "../../TabTitle/TabTitle";
 import Review from "../Review/Review";
 
 const ServiceDetails = () => {
+    //Page titel
+    TabTitle('Service Details')
+
   const { _id, serviceName, price, image, about, rating } = useLoaderData();
   const { user, setLoading } = useContext(AuthContext);
 

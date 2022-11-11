@@ -1,6 +1,10 @@
 import React from "react";
+import { TabTitle } from "../../TabTitle/TabTitle";
 
 const Blogs = () => {
+  //Page titel
+  TabTitle("Sunlight Dental Care | Blogs");
+
   return (
     <div className="my-20 mx-7">
       <h2 className="text-center text-4xl text-warning my-10">Blogs</h2>

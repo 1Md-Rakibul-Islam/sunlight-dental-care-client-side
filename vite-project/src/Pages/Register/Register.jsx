@@ -3,9 +3,12 @@ import React, { useContext } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import app from "../../firebase/firebase.config";
 import { AuthContext } from "../../Router/Context/AuthProvider/AuthProvider";
+import { TabTitle } from "../../TabTitle/TabTitle";
 // import  fromImg  from "../../assets/fromInage.jpg";
 
 const Register = () => {
+  //Page titel
+  TabTitle("Sunlight Dental Care | Register");
   const { creatUser, setLoading } = useContext(AuthContext);
   const navigate = useNavigate();
 

@@ -1,8 +1,12 @@
 import React, { useContext } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../Router/Context/AuthProvider/AuthProvider";
+import { TabTitle } from "../../TabTitle/TabTitle";
 
 const AddService = () => {
+  //Page titel
+  TabTitle("Sunlight Dental Care | Add Service");
+
   const { creatUser, setLoading } = useContext(AuthContext);
   const navigate = useNavigate();
 

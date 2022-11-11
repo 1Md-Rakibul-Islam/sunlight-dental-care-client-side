@@ -3,9 +3,12 @@ import { Link, useLocation, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../Router/Context/AuthProvider/AuthProvider";
 import { FaGoogle } from "react-icons/fa";
 import { GoogleAuthProvider } from "firebase/auth";
+import { TabTitle } from "../../TabTitle/TabTitle";
 // import  fromImg  from "../../assets/fromInage.jpg";
 
 const Login = () => {
+  //Page titel
+  TabTitle("Sunlight Dental Care | Login");
   const { logIn, loginProvider, setLoading } = useContext(AuthContext);
 
   const location = useLocation();
@@ -25,7 +28,7 @@ const Login = () => {
         setLoading(false);
       })
       .catch((error) => console.error(error));
-      navigate(from, {replace: true});
+    navigate(from, { replace: true });
   };
 
   // google login
@@ -35,7 +38,7 @@ const Login = () => {
       .then((result) => {
         const user = result.user;
         console.log(user);
-        setLoading(false)
+        setLoading(false);
         navigate(from, { replace: true });
       })
       .catch((error) => {

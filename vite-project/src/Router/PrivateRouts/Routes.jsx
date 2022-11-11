@@ -31,11 +31,19 @@ const router = createBrowserRouter([
       },
       {
         path: "/myReview",
-        element: <PrivateRouts><MyReview></MyReview></PrivateRouts>,
+        element: (
+          <PrivateRouts>
+            <MyReview></MyReview>
+          </PrivateRouts>
+        ),
       },
       {
         path: "/addService",
-        element: <PrivateRouts><AddService></AddService></PrivateRouts>,
+        element: (
+          <PrivateRouts>
+            <AddService></AddService>
+          </PrivateRouts>
+        ),
       },
       {
         path: "/blogs",
@@ -48,6 +56,20 @@ const router = createBrowserRouter([
       {
         path: "/register",
         element: <Register></Register>,
+      },
+      {
+        path: "*",
+        element: (
+          <div>
+            <h2 className="text-center text-9xl my-52 text-warning">
+              404
+              <span>
+                <br />
+                <h4 className="text-center text-white text-3xl">Opps! This page is not found</h4>
+              </span>
+            </h2>
+          </div>
+        ),
       },
     ],
   },
