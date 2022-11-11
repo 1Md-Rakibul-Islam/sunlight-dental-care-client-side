@@ -50,8 +50,6 @@ const ServiceDetails = () => {
       .catch((err) => console.error(err));
   };
 
-
-
   return (
     <div className="mx-auto">
       <h2>Service Details</h2>

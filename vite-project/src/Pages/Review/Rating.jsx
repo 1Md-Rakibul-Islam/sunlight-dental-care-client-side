@@ -3,7 +3,7 @@ import { useContext } from "react";
 import { FaUserCircle } from "react-icons/fa";
 import { AuthContext } from "../../Router/Context/AuthProvider/AuthProvider";
 
-const Review = ({ review, handelOnDelete, handelOnEdit }) => {
+const Rating = ({ review, handelOnDelete, handelOnEdit }) => {
   const {  _id, serviceName, userName, email, userImage, image, price, about, rating } = review;
 
   const {user} = useContext(AuthContext);
@@ -55,4 +55,4 @@ const Review = ({ review, handelOnDelete, handelOnEdit }) => {
   );
 };
 
-export default Review;
+export default Rating;

@@ -41,7 +41,8 @@ const Review = ({ _id }) => {
       <div className="flex justify-center flex-wrap gap-5">
         {reviews.length > 0
           ? reviews.map((review) => <Rating key={review._id} review={review} handelOnDelete={handelOnDelete}></Rating>)
-          : "No Reviews in this service"}
+          : "No Reviews in this service"
+        }
       </div>
     </div>
   );

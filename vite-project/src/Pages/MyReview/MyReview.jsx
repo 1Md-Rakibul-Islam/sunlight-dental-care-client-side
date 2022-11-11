@@ -1,34 +1,55 @@
-import React, { useContext, useState } from 'react';
-import { useEffect } from 'react';
-import { AuthContext } from '../../Router/Context/AuthProvider/AuthProvider';
-import Review from '../Review/Rating';
+import React, { useContext, useState } from "react";
+import { useEffect } from "react";
+import { AuthContext } from "../../Router/Context/AuthProvider/AuthProvider";
+// import Review from "../Review/Rating";
+import Rating from "../Review/Rating";
 
 const MyReview = () => {
+  const { user } = useContext(AuthContext);
 
-    const { user } = useContext(AuthContext);
+  const [myReviews, SetMyReview] = useState({});
 
-    const [myReviews, SetMyReview] = useState([]);
 
-    useEffect( () => {
-        fetch(`http://localhost:5000/reviews/user?email=${user?.email}`)
-        .then(res => res.json())
-        .then(data => SetMyReview(data))
-    }, [])
+  const handelOnDelete = (id) => {
+    const permation = window.confirm("Are you sure to Delete? Yes/No");
 
-    return (
-        <div>
-            <h2 className='text-center text-4xl text-warning my-10'>My Review: <span className='text-white'>{myReviews.length}</span></h2>
-            <div className='flex justify-center flex-wrap gap-5 my-10'>
-                {
-                    myReviews.map( review => <Review 
-                        key={review._id}
-                        review={review}
-                        user={user}
-                    ></Review>)
-                }
-            </div>
-        </div>
-    );
+    if (permation) {
+      fetch(`http://localhost:5000/reviews/${id}`, {
+        method: "DELETE",
+      })
+        .then((res) => res.json())
+        .then((data) => {
+          // console.log(data);
+          if (data.deletedCount > 0) {
+            alert("Deleted successfully");
+            const remaining = reviews.filter((revw) => revw._id !== id);
+            SetMyReview(remaining);
+          }
+        });
+    }
+  };
+
+  useEffect(() => {
+    fetch(`http://localhost:5000/reviews/user?email=${user?.email}`)
+      .then((res) => res.json())
+      .then((data) => SetMyReview(data));
+  }, [user?.email]);
+
+  return (
+    <div>
+      <h2 className="text-center text-4xl text-warning my-10">
+        My Review: <span className="text-white">{myReviews.length}</span>
+      </h2>
+      <div className="flex justify-center flex-wrap gap-5 my-10">
+
+        {
+            myReviews.length > 0
+          ? myReviews.map((review) => <Rating key={review._id} review={review} handelOnDelete={handelOnDelete}></Rating>)
+          : "No Reviews in this service"
+        }
+      </div>
+    </div>
+  );
 };
 
 export default MyReview;

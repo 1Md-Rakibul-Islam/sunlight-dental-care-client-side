@@ -8,7 +8,7 @@ const PrivateRouts = ({children}) => {
     const location = useLocation();
 
     if (loading) {
-        return <span className='text-5xl text-center my-auto mx-auto'><button className='btn btn-circle loading'></button></span>
+        return <div className='flex justify-center justify-items-center align-middle text-center my-auto mx-auto'><progress className="progress w-56"></progress></div>
     }
     
     if (user) {

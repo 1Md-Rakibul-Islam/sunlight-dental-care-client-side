@@ -2,11 +2,9 @@ import React, { useContext } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../Router/Context/AuthProvider/AuthProvider";
 
-
 const AddService = () => {
   const { creatUser, setLoading } = useContext(AuthContext);
   const navigate = useNavigate();
-
 
   const handelAddService = (event) => {
     event.preventDefault();
@@ -19,30 +17,28 @@ const AddService = () => {
 
     //service data
     const service = {
-        serviceName: name,
-        price,
-        image: photo,
-        about,
-        rating
+      serviceName: name,
+      price,
+      image: photo,
+      about,
+      rating,
+    };
 
-    }
-
-    fetch('http://localhost:5000/services', {
-        method: 'POST',
-        headers: {
-            'content-type': 'application/json'
-        },
-        body: JSON.stringify(service)
+    fetch("http://localhost:5000/services", {
+      method: "POST",
+      headers: {
+        "content-type": "application/json",
+      },
+      body: JSON.stringify(service),
     })
-    .then(res => res.json())
-    .then(data => {
-        if(data.acknowledged) {
-            form.reset();
-            alert('Service Successfully added')
+      .then((res) => res.json())
+      .then((data) => {
+        if (data.acknowledged) {
+          form.reset();
+          alert("Service Successfully added");
         }
-    })
-    .catch(error => console.error(error))
-
+      })
+      .catch((error) => console.error(error));
   };
 
   return (
