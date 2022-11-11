@@ -4,18 +4,6 @@ import { Link } from 'react-router-dom';
 import 'react-photo-view/dist/react-photo-view.css';
 import { PhotoProvider, PhotoView } from 'react-photo-view';
 
-
-    // <PhotoProvider>
-    //   <div className="foo">
-    //     {images.map((item, index) => (
-    //       <PhotoView key={index} src={item}>
-    //         <img src={item} alt="" />
-    //       </PhotoView>
-    //     ))}
-    //   </div>
-    // </PhotoProvider>
-
-
 const ServicesCard = ({service}) => {
     const { _id, serviceName, price, image, about, rating} = service
 

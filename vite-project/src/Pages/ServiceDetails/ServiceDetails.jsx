@@ -1,6 +1,7 @@
 import React from "react";
 import { useContext } from "react";
 import { Link, useLoaderData } from "react-router-dom";
+import toast, { Toaster } from 'react-hot-toast';
 import { AuthContext } from "../../Router/Context/AuthProvider/AuthProvider";
 import { TabTitle } from "../../TabTitle/TabTitle";
 import Review from "../Review/Review";
@@ -47,7 +48,7 @@ const ServiceDetails = () => {
         console.log(data);
         if (data.acknowledged) {
           form.reset();
-          alert("Rating Successfully");
+          toast.success(<div><p>'Rating Successfully created!' <br /> Plase refresh the browser</p></div>)          
         }
       })
       .catch((err) => console.error(err));
@@ -114,6 +115,7 @@ const ServiceDetails = () => {
                   <button type="submit" name="submit" className="btn btn-primary ">
                     Rivew Submit
                   </button>
+                  <Toaster></Toaster>
                 </div>
               </form>
             </div>

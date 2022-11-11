@@ -2,6 +2,7 @@ import React, { useContext } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../Router/Context/AuthProvider/AuthProvider";
 import { TabTitle } from "../../TabTitle/TabTitle";
+import toast, { Toaster } from 'react-hot-toast';
 
 const AddService = () => {
   //Page titel
@@ -39,7 +40,7 @@ const AddService = () => {
       .then((data) => {
         if (data.acknowledged) {
           form.reset();
-          alert("Service Successfully added");
+          toast.success("Service Successfully added")
         }
       })
       .catch((error) => console.error(error));
@@ -85,6 +86,7 @@ const AddService = () => {
             </div>
             <div className="form-control mt-6 mx-auto">
               <button className="btn btn-primary ">Add Service</button>
+              <Toaster></Toaster>
             </div>
           </form>
         </div>

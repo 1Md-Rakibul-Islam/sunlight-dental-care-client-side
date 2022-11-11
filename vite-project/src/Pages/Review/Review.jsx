@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useContext } from "react";
 import { AuthContext } from "../../Router/Context/AuthProvider/AuthProvider";
 import Rating from "./Rating";
+import toast, { Toaster } from 'react-hot-toast';
 
 const Review = ({ _id }) => {
   // load service based rivews
@@ -21,7 +22,7 @@ const Review = ({ _id }) => {
         .then((data) => {
           // console.log(data);
           if (data.deletedCount > 0) {
-            alert("Deleted successfully");
+            toast.error("Deleted Successfully")
             const remaining = reviews.filter((revw) => revw._id !== id);
             setReviews(remaining);
           }
@@ -42,7 +43,7 @@ const Review = ({ _id }) => {
       <h2 className="text-warning text-center my-10 text-4xl">Reviews: {reviews.length}</h2>
       <div className="flex justify-center flex-wrap gap-5">
         {reviews.length > 0
-          ? reviews.map((review) => <Rating key={review._id} review={review} handelOnDelete={handelOnDelete}></Rating>)
+          ? reviews.map((review) => <Rating key={review._id} Toaster={Toaster} review={review} handelOnDelete={handelOnDelete}></Rating>)
           : "No Reviews in this service"
         }
       </div>
