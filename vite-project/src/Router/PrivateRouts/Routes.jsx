@@ -28,7 +28,7 @@ const router = createBrowserRouter([
       {
         path: "/services/:_id",
         element: <ServiceDetails></ServiceDetails>,
-        loader: ({ params }) => fetch(`https://sunlight-dental-care-1md-rakibul-islam.vercel.app/services/${params._id}`),
+        loader: ({ params }) => fetch(`https://sunlight-dental-care-1md-rakibul-islam.vercel.app/services/${params._id}`)
       },
       {
         path: "/myReview",
@@ -41,7 +41,7 @@ const router = createBrowserRouter([
       {
         path: "/review/update/:_id",
         element: <ReviewUpdate></ReviewUpdate>,
-        loader: ({ params }) => fetch(`https://sunlight-dental-care-1md-rakibul-islam.vercel.app/review/${params._id}`),
+        loader: ({ params }) => fetch(`https://sunlight-dental-care-1md-rakibul-islam.vercel.app/review/update/${params._id}`)
       },
       {
         path: "/addService",

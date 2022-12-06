@@ -5,7 +5,8 @@ const Apoitment = () => {
     <div className="hero my-20 bg-base-200">
       <div className="hero-content grid grid-cols-1 md:grid-cols-2 justify-center justify-items-center">
         <div className="text-center lg:text-left">
-          <img className="w-4/5" src="https://denticare.bold-themes.com/allen/wp-content/uploads/sites/16/2020/01/doctor.png" alt="" />
+          {/* <img className="w-4/5" src="https://denticare.bold-themes.com/allen/wp-content/uploads/sites/16/2020/01/doctor.png" alt="" /> */}
+          <img className="w-full rounded-2xl" src="https://img.freepik.com/free-photo/empty-modern-teethcare-stomatology-hospital-office-with-nobody-it-equipped-with-dental-intruments-ready-orthodontist-healthcare-treatment-tooth-radiography-images-display_482257-9418.jpg" alt="" />
         </div>
         <div className="">
           <h2 className="text-2xl text-secondary">
