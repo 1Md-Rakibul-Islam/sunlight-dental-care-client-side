@@ -1,6 +1,6 @@
 Complete medical website with CSS animations. Inspired by glass-style websites across the internet
 
-# AYSHA DENTAL CARE
+# SUNLIGHT DENTAL CARE
 
 Website Live Preview [Sunlight Denatl Care](https://profound-quokka-10352e.netlify.app/).
 
